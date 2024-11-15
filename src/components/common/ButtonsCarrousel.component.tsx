@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     padding: theme.spacing.small,
-    backgroundColor: theme.colors.buttonBackground,
+    backgroundColor: theme.colors.background,
   },
   buttonWrapper: {
     flex: 1,

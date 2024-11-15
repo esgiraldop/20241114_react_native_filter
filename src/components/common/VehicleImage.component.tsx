@@ -1,11 +1,19 @@
 import React, {useState} from 'react';
-import {StyleSheet, useColorScheme, View} from 'react-native';
+import {
+  ImageStyle,
+  StyleProp,
+  StyleSheet,
+  useColorScheme,
+  View,
+} from 'react-native';
 import FastImage from 'react-native-fast-image';
 import Icon from 'react-native-vector-icons/Ionicons';
+import {theme} from '../../theme/main.theme';
 
 interface IVehicleImage {
   pictureUri?: string | undefined;
   size?: number | undefined;
+  style?: StyleProp<ImageStyle>;
 }
 
 export default function VehicleImage({
@@ -13,7 +21,7 @@ export default function VehicleImage({
   size = undefined,
 }: IVehicleImage) {
   const [imageError, setImageError] = useState<boolean>(false);
-  const isDarkMode = useColorScheme() === 'dark'; // TODO: Maybe define this in the main app theme?
+  const isDarkMode = useColorScheme() === 'dark';
   return (
     <View style={styles.container}>
       {imageError || !pictureUri ? (
@@ -51,14 +59,14 @@ const styles = StyleSheet.create({
     width: 50,
     height: 50,
     borderRadius: 25,
-    borderColor: '#ccc', // Optional border
-    borderWidth: 1, // Optional border
+    borderColor: theme.colors.buttonBackground,
+    borderWidth: 1,
   },
   icon: {
     width: 50,
     height: 50,
     borderRadius: 25,
-    backgroundColor: '#f0f0f0', // Optional background color for icon
+    backgroundColor: theme.colors.buttonBackground,
     justifyContent: 'center',
     alignItems: 'center',
   },

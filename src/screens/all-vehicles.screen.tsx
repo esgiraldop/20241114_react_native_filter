@@ -55,6 +55,7 @@ export function AllVehiclesScreen(): React.JSX.Element {
           renderItem={({item}) => (
             <GoToVehicleDetailsButton
               licensePlate={item.licensePlate}
+              make={item.make}
               id={item.id}
               photo={item.photo}
             />
