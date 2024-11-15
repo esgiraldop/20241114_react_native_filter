@@ -9,7 +9,7 @@ export interface RootStackParamList extends ParamListBase {
   VehicleDetails: {vehicleId: string};
   AddVehicle: undefined;
   EditVehicle: {
-    vehicleId: number;
+    vehicleId: string;
   };
   VehicleMaintenance: {carId: string};
 }
