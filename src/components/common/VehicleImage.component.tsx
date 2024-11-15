@@ -26,7 +26,7 @@ export default function VehicleImage({
     <View style={styles.container}>
       {imageError || !pictureUri ? (
         <Icon
-          name="person-circle"
+          name="car-sport-outline"
           size={size ? size : styles.image.width}
           color={!isDarkMode ? 'grey' : 'white'}
         />
