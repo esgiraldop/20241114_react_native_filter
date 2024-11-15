@@ -9,12 +9,12 @@ import {IVehicle} from '../../interfaces/vehicle.interface';
 import VehicleImage from '../common/VehicleImage.component';
 
 interface IVehicleDetailsButton
-  extends Pick<IVehicle, 'name' | 'id' | 'imageUri'> {}
+  extends Pick<IVehicle, 'licensePlate' | 'id' | 'photo'> {}
 
 export function GoToVehicleDetailsButton({
-  name,
+  licensePlate,
   id,
-  imageUri,
+  photo,
 }: IVehicleDetailsButton) {
   type VehicleDetailsScreenNavigationProp = NativeStackNavigationProp<
     RootStackParamList,
@@ -26,9 +26,10 @@ export function GoToVehicleDetailsButton({
   return (
     <TouchableOpacity
       style={styles.container}
-      onPress={() => navigation.navigate('VehicleDetails', {VehicleId: id})}>
-      <VehicleImage pictureUri={imageUri} />
-      <Text style={styles.nameText}>{name}</Text>
+      // onPress={() => navigation.navigate('VehicleDetails', {VehicleId: id})}
+    >
+      <VehicleImage pictureUri={photo} />
+      <Text style={styles.nameText}>{licensePlate}</Text>
     </TouchableOpacity>
   );
 }

@@ -48,13 +48,15 @@ export function AllVehiclesScreen(): React.JSX.Element {
               {/* <SmallButton text={'Search a vehicle'} /> */}
             </ButtonsCarrousel>
           }
-          data={vehicles.sort((a, b) => a.name.localeCompare(b.name))}
-          keyExtractor={item => item.id}
+          data={vehicles.sort((a, b) =>
+            a.licensePlate.localeCompare(b.licensePlate),
+          )}
+          keyExtractor={item => String(item.id)}
           renderItem={({item}) => (
             <GoToVehicleDetailsButton
-              name={item.name}
+              licensePlate={item.licensePlate}
               id={item.id}
-              imageUri={item.imageUri}
+              photo={item.photo}
             />
           )}
         />

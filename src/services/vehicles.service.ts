@@ -1,8 +1,8 @@
 import {privateAxiosInstance} from '../config/axios.config';
 import {
   IVehiclesSucessfullResponse,
-  ISingleContactSucessfullResponse,
-  IUpdateContact,
+  ISingleVehicleSucessfullResponse,
+  IUpdateVehicle,
 } from '../interfaces/vehicle.interface';
 import {handleAxiosResponse} from '../utilities/handle-axios-response.utility';
 import Contacts from 'react-native-contacts';
@@ -15,7 +15,7 @@ export type IHandleError = (
 ) => void;
 
 export class VehiclesService {
-  static resource = 'contacts';
+  static resource = 'vehicles';
 
   static async getAll(): Promise<IVehiclesSucessfullResponse | null> {
     return handleAxiosResponse<IVehiclesSucessfullResponse>(
@@ -28,21 +28,21 @@ export class VehiclesService {
 
   static async getById(
     id: number,
-  ): Promise<ISingleContactSucessfullResponse | null> {
-    return handleAxiosResponse<ISingleContactSucessfullResponse>(
+  ): Promise<ISingleVehicleSucessfullResponse | null> {
+    return handleAxiosResponse<ISingleVehicleSucessfullResponse>(
       async () =>
-        await privateAxiosInstance.get<ISingleContactSucessfullResponse>(
+        await privateAxiosInstance.get<ISingleVehicleSucessfullResponse>(
           `${this.resource}/${id}`,
         ),
     );
   }
 
   static async create(
-    contactData: IUpdateContact,
-  ): Promise<ISingleContactSucessfullResponse | null> {
-    return handleAxiosResponse<ISingleContactSucessfullResponse>(
+    contactData: IUpdateVehicle,
+  ): Promise<ISingleVehicleSucessfullResponse | null> {
+    return handleAxiosResponse<ISingleVehicleSucessfullResponse>(
       async () =>
-        await privateAxiosInstance.post<ISingleContactSucessfullResponse>(
+        await privateAxiosInstance.post<ISingleVehicleSucessfullResponse>(
           `${this.resource}`,
           contactData,
         ),
@@ -50,7 +50,7 @@ export class VehiclesService {
   }
 
   static async createMultiple(
-    contactData: IUpdateContact[],
+    contactData: IUpdateVehicle[],
   ): Promise<IVehiclesSucessfullResponse | null> {
     return handleAxiosResponse<IVehiclesSucessfullResponse>(
       async () =>
@@ -63,7 +63,7 @@ export class VehiclesService {
 
   static async update(
     id: number,
-    contactData: IUpdateContact,
+    contactData: IUpdateVehicle,
   ): Promise<IVehiclesSucessfullResponse | null> {
     return handleAxiosResponse<IVehiclesSucessfullResponse>(
       async () =>

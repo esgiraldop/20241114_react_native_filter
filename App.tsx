@@ -1,14 +1,8 @@
-// if (__DEV__) {
-//   require('./ReactotronConfig');
-// }
-
 import React from 'react';
 import {StatusBar, useColorScheme} from 'react-native';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
-// import {DemoScreen} from './src/screens/demo.screen';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-// import {DemoScreen} from './src/screens';
 import {RootStackParamList} from './src/interfaces/navigation.interface';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 import {theme} from './src/theme/main.theme';
@@ -20,7 +14,7 @@ import {AllVehiclesScreen} from './src/screens/all-vehicles.screen';
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
 function App(): React.JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark'; // TODO: Maybe define this in the main app theme?
+  const isDarkMode = useColorScheme() === 'dark';
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
@@ -47,7 +41,6 @@ function App(): React.JSX.Element {
               animation: 'slide_from_right',
               freezeOnBlur: true,
             }}>
-            {/* <Stack.Screen name="Demo" component={DemoScreen} /> */}
             <Stack.Screen
               name="Register"
               component={RegistrationScreen}
@@ -61,7 +54,7 @@ function App(): React.JSX.Element {
             <Stack.Screen
               name="Vehicles"
               component={AllVehiclesScreen}
-              options={{title: "All bellatrix's vehicles"}}
+              options={{title: "All Bellatrix's vehicles"}}
             />
           </Stack.Navigator>
         </NavigationContainer>

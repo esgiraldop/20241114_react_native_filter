@@ -32,11 +32,13 @@ export function LoginScreen(): React.JSX.Element {
   const onSubmit = async (values: IUser) => {
     setIsSubmitting(true);
     const response = await AuthService.login(values);
+    console.log('response: ', response);
     if (response) {
       const asyncStorageResponse = await setValueAsyncStorage(
         'token',
-        response.data.accessToken,
+        response.data.access_token,
       );
+      console.log('asyncStorageResponse: ', asyncStorageResponse);
       if (asyncStorageResponse) {
         setIsSubmitting(false);
         setErrorSubmitting(false);

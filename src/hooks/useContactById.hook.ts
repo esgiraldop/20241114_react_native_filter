@@ -1,11 +1,11 @@
 import {useCallback, useState} from 'react';
-import {ISingleContactSucessfullResponse} from '../interfaces/vehicle.interface';
+import {ISingleVehicleSucessfullResponse} from '../interfaces/vehicle.interface';
 import {VehiclesService} from '../services/vehicles.service';
 import {useFocusEffect} from '@react-navigation/native';
 
 export function useContactById(contactId: number) {
   const [contactInfo, setContactInfo] =
-    useState<ISingleContactSucessfullResponse | null>(null);
+    useState<ISingleVehicleSucessfullResponse | null>(null);
   const [isContactLoading, setIsContactLoading] = useState<boolean | null>(
     false,
   );
