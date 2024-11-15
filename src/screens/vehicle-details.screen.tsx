@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import {
   Text,
   TouchableOpacity,
@@ -9,100 +9,81 @@ import {
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {RootStackParamList} from '../interfaces';
 import {RouteProp, useNavigation, useRoute} from '@react-navigation/native';
-import ContactImage from '../components/common/contactImage.component';
-import {useContactById} from '../hooks/useContactById.hook';
-import {ContactsService} from '../services/contacts.service';
+import {useVehicleById} from '../hooks/useVehicleById.hook';
 import {ConfirmationModal} from '../components/common/confirmation-modal.component';
 import {theme} from '../theme/main.theme';
-import {
-  GoogleMap,
-  IMarkerCoordinates,
-} from '../components/common/googleMap.component';
-import WeatherCard from '../components/common/weatherCard.component';
+import {VehiclesService} from '../services/vehicles.service';
+import VehicleImage from '../components/common/VehicleImage.component';
 
-type ContactDetailsScreenProp = NativeStackNavigationProp<
+type VehicleDetailsScreenProp = NativeStackNavigationProp<
   RootStackParamList,
-  'EditContact'
+  'VehicleDetails'
 >;
 
-export function ContactDetailsScreen(): React.JSX.Element {
-  const {params} = useRoute<RouteProp<RootStackParamList, 'EditContact'>>();
-  const contactId = params.contactId;
-  const navigation = useNavigation<ContactDetailsScreenProp>();
+export function VehicleDetailsScreen(): React.JSX.Element {
+  const {params} = useRoute<RouteProp<RootStackParamList, 'VehicleDetails'>>();
+  const vehicleId = params.vehicleId;
+  const navigation = useNavigation<VehicleDetailsScreenProp>();
 
-  const {contactInfo, isContactLoading, errorLoadingContact} =
-    useContactById(contactId);
+  const {vehicleInfo, isVehicleLoading, errorLoadingVehicle} = useVehicleById(
+    +vehicleId,
+  );
   const [confirmationModalVisible, setConfirmationModalVisible] =
     useState<boolean>(false);
 
-  const [marker, setMarker] = useState<IMarkerCoordinates | null>(null);
-  useEffect(() => {
-    if (contactInfo?.data.latitude && contactInfo?.data.longitude) {
-      setMarker({
-        latitude: +contactInfo?.data.latitude, //It's vital the coordinate gets here as a number
-        longitude: +contactInfo?.data.longitude,
-      });
-    }
-  }, [contactInfo]);
-
-  const handleDeleteContact = async () => {
-    await ContactsService.delete(contactId);
+  const handleDeleteVehicle = async () => {
+    await VehiclesService.delete(+vehicleId);
     navigation.goBack();
   };
 
   return (
-    <ScrollView style={contactDetailsStyles.container}>
-      {isContactLoading ? (
-        <Text style={contactDetailsStyles.loadingText}>
-          Loading contact information...
+    <ScrollView style={vehicleDetailsStyles.container}>
+      {isVehicleLoading ? (
+        <Text style={vehicleDetailsStyles.loadingText}>
+          Loading vehicle information...
         </Text>
-      ) : errorLoadingContact || !contactInfo ? (
-        <Text style={contactDetailsStyles.errorText}>
-          No information for the contact could be found
+      ) : errorLoadingVehicle || !vehicleInfo ? (
+        <Text style={vehicleDetailsStyles.errorText}>
+          No information for the vehicle could be found
         </Text>
       ) : (
-        <View style={contactDetailsStyles.contactContainer}>
-          <ContactImage pictureUri={contactInfo.data.imageUri} size={150} />
-          <Text style={contactDetailsStyles.nameText}>
-            {contactInfo.data.name}
+        <View style={vehicleDetailsStyles.vehicleContainer}>
+          <VehicleImage pictureUri={vehicleInfo.data.photo} size={150} />
+          <Text style={vehicleDetailsStyles.nameText}>
+            License plate:{'   '}
+            <Text>{vehicleInfo.data.licensePlate}</Text>
           </Text>
-          <Text style={contactDetailsStyles.phoneText}>
-            {contactInfo.data.phone}
+          <Text style={vehicleDetailsStyles.nameText}>
+            Manufacturer:{'   '}
+            <Text>{vehicleInfo.data.make}</Text>
           </Text>
-          <Text style={contactDetailsStyles.emailText}>
-            {contactInfo.data.email}
+          <Text style={vehicleDetailsStyles.nameText}>
+            Model:{'   '}
+            <Text>{vehicleInfo.data.model}</Text>
           </Text>
-
-          <Text style={contactDetailsStyles.emailText}>
-            Contact's current location
+          <Text style={vehicleDetailsStyles.nameText}>
+            Year:{'   '}
+            <Text>{vehicleInfo.data.year}</Text>
           </Text>
-          <GoogleMap marker={marker} setMarker={setMarker} onEdit={false} />
-
-          {!!marker && (
-            <View>
-              <Text style={contactDetailsStyles.emailText}>Local weather</Text>
-              <WeatherCard lat={marker?.latitude} lon={marker?.longitude} />
-            </View>
-          )}
 
           <TouchableOpacity
-            style={[contactDetailsStyles.button]}
-            onPress={() => navigation.navigate('EditContact', {contactId})}>
-            <Text style={contactDetailsStyles.buttonText}>Edit Contact</Text>
+            style={[vehicleDetailsStyles.button]}
+            onPress={() => navigation.navigate('EditVehicle', {vehicleId})}>
+            <Text style={vehicleDetailsStyles.buttonText}>Edit Vehicle</Text>
           </TouchableOpacity>
 
           <TouchableOpacity
-            style={contactDetailsStyles.button}
+            style={vehicleDetailsStyles.button}
             onPress={() => setConfirmationModalVisible(true)}>
-            <Text style={contactDetailsStyles.buttonText}>Delete Contact</Text>
+            <Text style={vehicleDetailsStyles.buttonText}>Delete Vehicle</Text>
           </TouchableOpacity>
 
           <ConfirmationModal
             confirmationModalVisible={confirmationModalVisible}
             setConfirmationModalVisible={setConfirmationModalVisible}
-            handleAccept={handleDeleteContact}
+            handleAccept={handleDeleteVehicle}
             requiresCancel={true}>
-            <Text>Do you want to delete this contact?</Text>
+            <Text>Do you want to delete this vehicle?</Text>
           </ConfirmationModal>
         </View>
       )}
@@ -110,13 +91,13 @@ export function ContactDetailsScreen(): React.JSX.Element {
   );
 }
 
-export const contactDetailsStyles = StyleSheet.create({
+export const vehicleDetailsStyles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: theme.colors.background,
     padding: theme.spacing.medium,
   },
-  contactContainer: {
+  vehicleContainer: {
     alignItems: 'center',
     borderBottomColor: theme.colors.borderColor,
     borderBottomWidth: 1,

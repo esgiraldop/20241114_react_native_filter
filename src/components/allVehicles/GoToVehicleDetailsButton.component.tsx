@@ -13,22 +13,23 @@ interface IVehicleDetailsButton
 
 export function GoToVehicleDetailsButton({
   licensePlate,
-  // id,
+  id,
   make,
   photo,
 }: IVehicleDetailsButton) {
-  // type VehicleDetailsScreenNavigationProp = NativeStackNavigationProp<
-  //   RootStackParamList,
-  //   'VehicleDetails'
-  // >;
+  type VehicleDetailsScreenNavigationProp = NativeStackNavigationProp<
+    RootStackParamList,
+    'VehicleDetails'
+  >;
 
-  // const navigation = useNavigation<VehicleDetailsScreenNavigationProp>();
+  const navigation = useNavigation<VehicleDetailsScreenNavigationProp>();
 
   return (
     <TouchableOpacity
       style={styles.container}
-      // onPress={() => navigation.navigate('VehicleDetails', {carId: id})}
-    >
+      onPress={() =>
+        navigation.navigate('VehicleDetails', {vehicleId: String(id)})
+      }>
       <VehicleImage pictureUri={photo} />
       <View style={styles.infoContainer}>
         <Text style={styles.licensePlateText}>

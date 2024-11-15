@@ -10,6 +10,7 @@ import {SyncProvider} from './src/contexts/contacts-syncronization.context';
 import {LoginScreen} from './src/screens/login.screen';
 import {RegistrationScreen} from './src/screens/register.screen';
 import {AllVehiclesScreen} from './src/screens/all-vehicles.screen';
+import {VehicleDetailsScreen} from './src/screens/vehicle-details.screen';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -55,6 +56,11 @@ function App(): React.JSX.Element {
               name="Vehicles"
               component={AllVehiclesScreen}
               options={{title: "All Bellatrix's vehicles"}}
+            />
+            <Stack.Screen
+              name="VehicleDetails"
+              component={VehicleDetailsScreen}
+              options={{title: 'Vehicle details'}}
             />
           </Stack.Navigator>
         </NavigationContainer>
