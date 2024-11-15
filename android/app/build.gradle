@@ -105,11 +105,7 @@ android {
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
         }
     }
-    externalNativeBuild {
-        cmake {
-            arguments "-Wno-dollar-in-identifier-extension" // Suppress the warning
-        }
-    }
+
 }
 
 dependencies {
