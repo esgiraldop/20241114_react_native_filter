@@ -7,36 +7,14 @@ export const formStyles = StyleSheet.create({
     backgroundColor: theme.colors.background,
     padding: theme.spacing.medium,
   },
-  loadingText: {
-    color: theme.colors.textSecondary,
-    textAlign: 'center',
-  },
-  errorText: {
-    color: theme.colors.error,
-    textAlign: 'center',
-  },
-  sucessText: {
-    color: theme.colors.success,
-    textAlign: 'center',
+  VerticallyCenteredcontainer: {
+    justifyContent: 'center',
   },
   formContainer: {
     alignItems: 'center',
   },
   imageContainer: {
     marginBottom: theme.spacing.large,
-  },
-  label: {
-    color: theme.colors.textPrimary,
-    fontSize: theme.fontSizes.text,
-    marginBottom: theme.spacing.small,
-  },
-  input: {
-    backgroundColor: theme.colors.buttonBackground,
-    color: theme.colors.textPrimary,
-    padding: theme.spacing.small,
-    borderRadius: theme.spacing.small,
-    width: '100%',
-    marginBottom: theme.spacing.medium,
   },
   error: {
     fontSize: 12,
@@ -63,10 +41,5 @@ export const formStyles = StyleSheet.create({
     borderRadius: theme.spacing.small,
     alignItems: 'center',
     marginLeft: theme.spacing.small,
-  },
-  buttonText: {
-    color: theme.colors.textPrimary,
-    fontSize: theme.fontSizes.text,
-    fontWeight: 'bold',
   },
 });

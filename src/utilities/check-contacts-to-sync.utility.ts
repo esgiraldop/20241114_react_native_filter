@@ -4,7 +4,7 @@ import {
   IContactsSucessfullResponse,
 } from '../interfaces/contact.interface';
 import {phoneContactsAdapter} from '../adapters/phoneContacts.adapter';
-import {ContactsService} from '../services/contacts.service';
+import {VehiclesService} from '../services/vehicles.service';
 
 export const getContactsToSync = (
   appContacts: IContact[],
@@ -25,5 +25,5 @@ export const postNewContacts = async (
   phoneContacts2Sync: Contact[],
 ): Promise<IContactsSucessfullResponse | null> => {
   const phoneContacts2SyncAdapted = phoneContactsAdapter(phoneContacts2Sync);
-  return await ContactsService.createMultiple(phoneContacts2SyncAdapted);
+  return await VehiclesService.createMultiple(phoneContacts2SyncAdapted);
 };

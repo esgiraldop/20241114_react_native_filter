@@ -1,6 +1,6 @@
 import {useCallback, useState} from 'react';
 import {ISingleContactSucessfullResponse} from '../interfaces/contact.interface';
-import {ContactsService} from '../services/contacts.service';
+import {VehiclesService} from '../services/vehicles.service';
 import {useFocusEffect} from '@react-navigation/native';
 
 export function useContactById(contactId: number) {
@@ -16,7 +16,7 @@ export function useContactById(contactId: number) {
   useFocusEffect(
     useCallback(() => {
       async function getContactInfo(id: number) {
-        const contactInfoResponse = await ContactsService.getById(id);
+        const contactInfoResponse = await VehiclesService.getById(id);
         setIsContactLoading(true);
         if (contactInfoResponse) {
           setContactInfo(contactInfoResponse);

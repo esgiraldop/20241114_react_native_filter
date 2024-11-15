@@ -14,7 +14,7 @@ export type IHandleError = (
   errorLoading: boolean,
 ) => void;
 
-export class ContactsService {
+export class VehiclesService {
   static resource = 'contacts';
 
   static async getAll(): Promise<IContactsSucessfullResponse | null> {

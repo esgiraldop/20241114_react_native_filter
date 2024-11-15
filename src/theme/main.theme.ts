@@ -18,5 +18,6 @@ export const theme = {
     small: 8,
     medium: 16,
     large: 24,
+    huge: 35,
   },
 };

@@ -1,11 +1,5 @@
 import React, {useState} from 'react';
-import {
-  ScrollView,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import {Text, TextInput, TouchableOpacity, View} from 'react-native';
 import {Formik} from 'formik';
 import * as Yup from 'yup';
 import {CommonActions, useNavigation} from '@react-navigation/native';
@@ -16,6 +10,7 @@ import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {RootStackParamList} from '../interfaces';
 import {setValueAsyncStorage} from '../utilities/set-variable-async-storage.utility';
 import {formStyles} from '../styles/form.styles';
+import {textStyles} from '../styles/text.styles';
 
 // Validation schema for the registration form
 const registrationSchema = Yup.object().shape({
@@ -67,7 +62,8 @@ export function LoginScreen(): React.JSX.Element {
   };
 
   return (
-    <ScrollView style={formStyles.container}>
+    <View
+      style={[formStyles.container, formStyles.VerticallyCenteredcontainer]}>
       <Formik
         initialValues={initialValues}
         validationSchema={registrationSchema}
@@ -81,9 +77,10 @@ export function LoginScreen(): React.JSX.Element {
           isValid,
         }) => (
           <View style={formStyles.formContainer}>
-            <Text style={formStyles.label}>Email</Text>
+            <Text style={textStyles.titleText}>Sing in</Text>
+            <Text style={textStyles.label}>Email</Text>
             <TextInput
-              style={formStyles.input}
+              style={textStyles.input}
               onChangeText={handleChange('email')}
               onBlur={handleBlur('email')}
               value={values.email}
@@ -95,9 +92,9 @@ export function LoginScreen(): React.JSX.Element {
               <Text style={formStyles.error}>{errors.email}</Text>
             )}
 
-            <Text style={formStyles.label}>Password</Text>
+            <Text style={textStyles.label}>Password</Text>
             <TextInput
-              style={formStyles.input}
+              style={textStyles.input}
               onChangeText={handleChange('password')}
               onBlur={handleBlur('password')}
               value={values.password}
@@ -122,12 +119,12 @@ export function LoginScreen(): React.JSX.Element {
       </Formik>
       {errorSubmitting !== null &&
         (errorSubmitting ? (
-          <Text style={formStyles.errorText}>
+          <Text style={textStyles.errorText}>
             There was an error logging in. Please try again later
           </Text>
         ) : (
-          <Text style={formStyles.sucessText}>Log in sucessful</Text>
+          <Text style={textStyles.sucessText}>Log in sucessful</Text>
         ))}
-    </ScrollView>
+    </View>
   );
 }
