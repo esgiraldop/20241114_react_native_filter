@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {Modal, TouchableOpacity, View} from 'react-native';
 import {Text} from 'react-native-elements';
-import ContactImage from './contactImage.component';
+import ContactImage from './VehicleImage.component';
 import {checkPermission} from '../../utilities/check-permissions.utility';
 import {PermissionEnum} from '../../interfaces/permissions.interface';
 import {NotifyUserPermissionModal} from './notifyUserPermissionModal.component';

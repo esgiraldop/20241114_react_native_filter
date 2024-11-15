@@ -15,6 +15,7 @@ import {theme} from './src/theme/main.theme';
 import {SyncProvider} from './src/contexts/contacts-syncronization.context';
 import {LoginScreen} from './src/screens/login.screen';
 import {RegistrationScreen} from './src/screens/register.screen';
+import {AllVehiclesScreen} from './src/screens/all-vehicles.screen';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -56,6 +57,11 @@ function App(): React.JSX.Element {
               name="Login"
               component={LoginScreen}
               options={{title: 'User login'}}
+            />
+            <Stack.Screen
+              name="Vehicles"
+              component={AllVehiclesScreen}
+              options={{title: "All bellatrix's vehicles"}}
             />
           </Stack.Navigator>
         </NavigationContainer>

@@ -1,9 +1,9 @@
 import {privateAxiosInstance} from '../config/axios.config';
 import {
-  IContactsSucessfullResponse,
+  IVehiclesSucessfullResponse,
   ISingleContactSucessfullResponse,
   IUpdateContact,
-} from '../interfaces/contact.interface';
+} from '../interfaces/vehicle.interface';
 import {handleAxiosResponse} from '../utilities/handle-axios-response.utility';
 import Contacts from 'react-native-contacts';
 import {Contact} from 'react-native-contacts/type';
@@ -17,10 +17,10 @@ export type IHandleError = (
 export class VehiclesService {
   static resource = 'contacts';
 
-  static async getAll(): Promise<IContactsSucessfullResponse | null> {
-    return handleAxiosResponse<IContactsSucessfullResponse>(
+  static async getAll(): Promise<IVehiclesSucessfullResponse | null> {
+    return handleAxiosResponse<IVehiclesSucessfullResponse>(
       async () =>
-        await privateAxiosInstance.get<IContactsSucessfullResponse>(
+        await privateAxiosInstance.get<IVehiclesSucessfullResponse>(
           `${this.resource}`,
         ),
     );
@@ -51,10 +51,10 @@ export class VehiclesService {
 
   static async createMultiple(
     contactData: IUpdateContact[],
-  ): Promise<IContactsSucessfullResponse | null> {
-    return handleAxiosResponse<IContactsSucessfullResponse>(
+  ): Promise<IVehiclesSucessfullResponse | null> {
+    return handleAxiosResponse<IVehiclesSucessfullResponse>(
       async () =>
-        await privateAxiosInstance.post<IContactsSucessfullResponse>(
+        await privateAxiosInstance.post<IVehiclesSucessfullResponse>(
           `${this.resource}/batch`,
           contactData,
         ),
@@ -64,20 +64,20 @@ export class VehiclesService {
   static async update(
     id: number,
     contactData: IUpdateContact,
-  ): Promise<IContactsSucessfullResponse | null> {
-    return handleAxiosResponse<IContactsSucessfullResponse>(
+  ): Promise<IVehiclesSucessfullResponse | null> {
+    return handleAxiosResponse<IVehiclesSucessfullResponse>(
       async () =>
-        await privateAxiosInstance.patch<IContactsSucessfullResponse>(
+        await privateAxiosInstance.patch<IVehiclesSucessfullResponse>(
           `${this.resource}/${id}`,
           contactData,
         ),
     );
   }
 
-  static async delete(id: number): Promise<IContactsSucessfullResponse | null> {
-    return handleAxiosResponse<IContactsSucessfullResponse>(
+  static async delete(id: number): Promise<IVehiclesSucessfullResponse | null> {
+    return handleAxiosResponse<IVehiclesSucessfullResponse>(
       async () =>
-        await privateAxiosInstance.delete<IContactsSucessfullResponse>(
+        await privateAxiosInstance.delete<IVehiclesSucessfullResponse>(
           `${this.resource}/${id}`,
         ),
     );

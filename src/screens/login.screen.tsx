@@ -47,7 +47,7 @@ export function LoginScreen(): React.JSX.Element {
       navigation.dispatch(
         CommonActions.reset({
           index: 0,
-          routes: [{name: 'Contacts'}],
+          routes: [{name: 'Vehicles'}],
         }),
       );
     } else {

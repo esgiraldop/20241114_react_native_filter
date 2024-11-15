@@ -70,7 +70,7 @@ export function RegistrationScreen(): React.JSX.Element {
         }) => (
           <View style={formStyles.formContainer}>
             <Text style={[textStyles.titleText, textStyles.textAlignmentLeft]}>
-              Welcome to BeallatrixCar
+              Welcome to BellatrixCar
             </Text>
             <Text style={textStyles.label}>Name</Text>
             <TextInput

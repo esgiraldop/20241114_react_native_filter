@@ -1,5 +1,5 @@
 import {useCallback, useState} from 'react';
-import {ISingleContactSucessfullResponse} from '../interfaces/contact.interface';
+import {ISingleContactSucessfullResponse} from '../interfaces/vehicle.interface';
 import {VehiclesService} from '../services/vehicles.service';
 import {useFocusEffect} from '@react-navigation/native';
 

@@ -5,11 +5,11 @@ export interface RootStackParamList extends ParamListBase {
   AnotherScreen: undefined;
   Register: undefined;
   Login: undefined;
-  Cars: undefined;
-  CarDetails: {carId: string};
-  AddCar: undefined;
-  EditCar: {
+  Vehicles: undefined;
+  VehicleDetails: {carId: string};
+  AddVehicle: undefined;
+  EditVehicle: {
     contactId: number;
   };
-  CarMaintenance: {carId: string};
+  VehicleMaintenance: {carId: string};
 }

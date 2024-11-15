@@ -1,10 +1,10 @@
 import {Contact} from 'react-native-contacts/type';
-import {IContact} from '../interfaces/contact.interface';
+import {IVehicle} from '../interfaces/vehicle.interface';
 import {isNull} from '../utilities/checkIsNull.utility';
 
 export const phoneContactsAdapter = (
   phoneContacts: Contact[],
-): Omit<IContact, 'id'>[] => {
+): Omit<IVehicle, 'id'>[] => {
   return phoneContacts.map(phoneContact => ({
     name: phoneContact.displayName,
     phone: phoneContact.phoneNumbers[0].number,

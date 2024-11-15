@@ -1,17 +1,17 @@
 import {Contact} from 'react-native-contacts/type';
 import {
-  IContact,
-  IContactsSucessfullResponse,
-} from '../interfaces/contact.interface';
+  IVehicle,
+  IVehiclesSucessfullResponse,
+} from '../interfaces/vehicle.interface';
 import {phoneContactsAdapter} from '../adapters/phoneContacts.adapter';
 import {VehiclesService} from '../services/vehicles.service';
 
 export const getContactsToSync = (
-  appContacts: IContact[],
+  appContacts: IVehicle[],
   phoneContacts: Contact[],
 ): Contact[] => {
   const appContactsNames = appContacts.map(
-    (appContact: IContact): string => appContact.name,
+    (appContact: IVehicle): string => appContact.name,
   );
   const newContacts = phoneContacts.filter(
     (phoneContact: Contact): Boolean =>
@@ -23,7 +23,7 @@ export const getContactsToSync = (
 
 export const postNewContacts = async (
   phoneContacts2Sync: Contact[],
-): Promise<IContactsSucessfullResponse | null> => {
+): Promise<IVehiclesSucessfullResponse | null> => {
   const phoneContacts2SyncAdapted = phoneContactsAdapter(phoneContacts2Sync);
   return await VehiclesService.createMultiple(phoneContacts2SyncAdapted);
 };
