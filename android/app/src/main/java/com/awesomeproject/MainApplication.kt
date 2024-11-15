@@ -1,4 +1,4 @@
-package com.closetoyou
+package com.BellatrixCar
 
 import android.app.Application
 import com.facebook.react.PackageList

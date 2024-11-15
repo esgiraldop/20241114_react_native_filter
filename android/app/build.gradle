@@ -90,9 +90,9 @@ android {
     buildToolsVersion rootProject.ext.buildToolsVersion
     compileSdk rootProject.ext.compileSdkVersion
 
-    namespace "com.closetoyou"
+    namespace "com.BellatrixCar"
     defaultConfig {
-        applicationId "com.closetoyou"
+        applicationId "com.BellatrixCar"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
