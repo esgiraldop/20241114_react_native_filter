@@ -1,0 +1,93 @@
+{
+  "contacts": [
+    {
+      "id": "ce67",
+      "name": "Chris",
+      "phoneNumber": "123",
+      "email": "Agevhq@wjdhf.com",
+      "picture": "file:///storage/emulated/0/Android/data/com.closetoyou/files/Pictures/f273ec02-48fe-4b87-9319-a56a8a7e7999.jpg",
+      "latitude": 6.282616843625951,
+      "longitude": -75.44686362147331
+    },
+    {
+      "id": "0a30",
+      "name": "Buzon de Voz",
+      "phoneNumber": null,
+      "picture": "",
+      "latitude": 0,
+      "longitude": 0
+    },
+    {
+      "id": "1ee4",
+      "name": "Julian Sierra Profe",
+      "phoneNumber": null,
+      "picture": "",
+      "latitude": 0,
+      "longitude": 0
+    },
+    {
+      "id": "c5ed",
+      "name": "Atencion al Cliente",
+      "phoneNumber": null,
+      "picture": "",
+      "latitude": 0,
+      "longitude": 0
+    },
+    {
+      "id": "75fa",
+      "name": "Gladys Mesa",
+      "phoneNumber": null,
+      "picture": "",
+      "latitude": 0,
+      "longitude": 0
+    },
+    {
+      "id": "d4da",
+      "name": "Maria Empanadas",
+      "phoneNumber": null,
+      "picture": "",
+      "latitude": 0,
+      "longitude": 0
+    },
+    {
+      "id": "2446",
+      "name": "Santiago Rolo",
+      "phoneNumber": null,
+      "picture": "",
+      "latitude": 0,
+      "longitude": 0
+    },
+    {
+      "id": "dc8e",
+      "name": "Torres",
+      "phoneNumber": null,
+      "picture": "",
+      "latitude": 0,
+      "longitude": 0
+    },
+    {
+      "id": "79bc",
+      "name": "Daniel Guerrero",
+      "phoneNumber": null,
+      "picture": "",
+      "latitude": 0,
+      "longitude": 0
+    },
+    {
+      "id": "42c5",
+      "name": "Pablo Montoya",
+      "phoneNumber": null,
+      "picture": "",
+      "latitude": 0,
+      "longitude": 0
+    },
+    {
+      "id": "ac79",
+      "name": "Raul Primo",
+      "phoneNumber": null,
+      "picture": "",
+      "latitude": 0,
+      "longitude": 0
+    }
+  ]
+}

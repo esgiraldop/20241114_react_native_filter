@@ -4,7 +4,10 @@ import {
   RESULTS,
   PermissionStatus,
 } from 'react-native-permissions';
-import {PermissionEnum, permissionMap} from '../interfaces';
+import {
+  PermissionEnum,
+  permissionMap,
+} from '../interfaces/permissions.interface';
 
 export const checkPermission = async (
   permissionKey: PermissionEnum,

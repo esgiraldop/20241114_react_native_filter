@@ -1,6 +1,13 @@
 apply plugin: "com.android.application"
 apply plugin: "org.jetbrains.kotlin.android"
 apply plugin: "com.facebook.react"
+apply from: project(':react-native-config').projectDir.getPath() + "/dotenv.gradle"
+
+
+// project.ext.vectoricons = [
+//     iconFontNames: [ 'Ionicons.tff' ] // Name of the font files you want to copy
+// ]
+apply from: file("../../node_modules/react-native-vector-icons/fonts.gradle")
 
 /**
  * This is the configuration block to customize your React Native Android app.
@@ -72,18 +79,26 @@ def enableProguardInReleaseBuilds = false
  */
 def jscFlavor = 'org.webkit:android-jsc:+'
 
+def dotenvFile = new File(rootProject.projectDir.parent, '.env')
+Properties properties = new Properties()
+if (dotenvFile.exists()) {
+    dotenvFile.withInputStream { properties.load(it) }
+}
+
 android {
     ndkVersion rootProject.ext.ndkVersion
     buildToolsVersion rootProject.ext.buildToolsVersion
     compileSdk rootProject.ext.compileSdkVersion
 
-    namespace "com.rn_test"
+    namespace "com.closetoyou"
     defaultConfig {
-        applicationId "com.rn_test"
+        applicationId "com.closetoyou"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
         versionName "1.0"
+        manifestPlaceholders = [GOOGLE_MAPS_API_KEY: properties.getProperty("GOOGLE_MAPS_API_KEY")]
+        multiDexEnabled true
     }
     signingConfigs {
         debug {
@@ -105,7 +120,6 @@ android {
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
         }
     }
-
 }
 
 dependencies {
@@ -117,4 +131,10 @@ dependencies {
     } else {
         implementation jscFlavor
     }
+
+    implementation project(':react-native-vector-icons')
+
+    implementation project(':react-native-image-crop-picker')
+
+    implementation project(':react-native-contacts')
 }

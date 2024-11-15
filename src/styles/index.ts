@@ -1,1 +1,1 @@
-export * from './app.styles';
+export * from './general.style';

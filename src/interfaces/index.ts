@@ -1,3 +1,2 @@
-export * from './login.interface';
 export * from './navigation.interface';
-export * from './permissions.interface';
+export * from './screens.interface';
