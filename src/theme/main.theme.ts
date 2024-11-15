@@ -1,9 +1,10 @@
+// Color palette: https://coolors.co/a6d49f-9cb380-522a27-c73e1d-c59849
 export const theme = {
   colors: {
-    background: '#121212',
+    background: '#C59849',
     textPrimary: '#FFFFFF',
     textSecondary: '#B0B0B0',
-    accent: '#BB86FC',
+    accent: '#522A27',
     buttonBackground: '#2C2C2C',
     borderColor: '#3A3A3A',
     error: '#de0a26',
