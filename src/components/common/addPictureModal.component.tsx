@@ -28,6 +28,7 @@ export const AddPictureModal = ({
     const permissionResponse = await checkPermission(PermissionEnum.CAMERA);
     if (permissionResponse) {
       const response = await ImagePickerService.pickImageFromCamera(imageSize);
+      console.log('response: ', response);
       if (response && response.path) setImageUri(response.path);
     } else {
       setPermissionModalopen(true);

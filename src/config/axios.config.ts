@@ -25,7 +25,28 @@ export const privateAxiosInstance: AxiosInstance = axios.create({
 privateAxiosInstance.interceptors.request.use(
   async config => {
     const token = await getAsyncStorageValue('token');
-    console.log('token: ', token);
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
+    }
+    return config;
+  },
+  error => {
+    return Promise.reject(error);
+  },
+);
+
+export const privateAxiosInstanceFormData: AxiosInstance = axios.create({
+  baseURL,
+  timeout: 5000,
+  headers: {
+    'Content-Type': 'multipart/form-data',
+  },
+  withCredentials: true,
+});
+
+privateAxiosInstanceFormData.interceptors.request.use(
+  async config => {
+    const token = await getAsyncStorageValue('token');
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
     }

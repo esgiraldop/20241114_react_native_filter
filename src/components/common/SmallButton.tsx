@@ -6,17 +6,17 @@ import {Text, StyleSheet, TouchableOpacity} from 'react-native';
 import {theme} from '../../theme/main.theme';
 
 export const SmallButton = ({text}: {text: string}) => {
-  type AddContactScreenNavigationProp = NativeStackNavigationProp<
+  type AddVehicleScreenNavigationProp = NativeStackNavigationProp<
     RootStackParamList,
-    'AddContact'
+    'AddVehicle'
   >;
 
-  const navigation = useNavigation<AddContactScreenNavigationProp>();
+  const navigation = useNavigation<AddVehicleScreenNavigationProp>();
 
   return (
     <TouchableOpacity
       style={styles.button}
-      onPress={() => navigation.navigate('AddContact')}>
+      onPress={() => navigation.navigate('AddVehicle')}>
       <Text style={styles.buttonText}>{text}</Text>
     </TouchableOpacity>
   );

@@ -12,6 +12,7 @@ import {RegistrationScreen} from './src/screens/register.screen';
 import {AllVehiclesScreen} from './src/screens/all-vehicles.screen';
 import {VehicleDetailsScreen} from './src/screens/vehicle-details.screen';
 import {EditVehicleScreen} from './src/screens/edit-vehicle.screen';
+import {AddVehicleScreen} from './src/screens/add-vehicle.screen';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -62,6 +63,11 @@ function App(): React.JSX.Element {
               name="VehicleDetails"
               component={VehicleDetailsScreen}
               options={{title: 'Vehicle details'}}
+            />
+            <Stack.Screen
+              name="AddVehicle"
+              component={AddVehicleScreen}
+              options={{title: 'Add new vehicle'}}
             />
             <Stack.Screen
               name="EditVehicle"

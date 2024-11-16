@@ -7,7 +7,6 @@ import {
   View,
 } from 'react-native';
 import {Formik} from 'formik';
-import * as Yup from 'yup';
 import {useVehicleById} from '../hooks/useVehicleById.hook';
 import {RouteProp, useNavigation, useRoute} from '@react-navigation/native';
 import {IVehicle, IUpdateVehicle} from '../interfaces/vehicle.interface';
@@ -19,14 +18,7 @@ import {theme} from '../theme/main.theme';
 import {formStyles} from '../styles/form.styles';
 import {textStyles} from '../styles/text.styles';
 import VehicleImage from '../components/common/VehicleImage.component';
-
-const vehicleSchema = Yup.object().shape({
-  name: Yup.string()
-    .required()
-    .min(3, 'Name must contain at least 3 characters'),
-  email: Yup.string().required('Email is required').email('Invalid email'),
-  phone: Yup.number().required('Phone number is required'),
-});
+import {vehicleSchema} from '../schemas/vehicle.schema';
 
 interface InewVehicleValues extends Omit<IVehicle, 'id'> {}
 
@@ -60,7 +52,7 @@ export function EditVehicleScreen(): React.JSX.Element {
   const onSubmit = async (values: IUpdateVehicle) => {
     await VehiclesService.update(+vehicleId, {
       ...values,
-      photo: imageUri,
+      photo: imageUri, //TODO: I have to load the picture as a file in a form data
     });
     navigation.goBack();
   };

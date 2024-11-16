@@ -34,7 +34,9 @@ export async function handleAxiosResponse<T>(
   // handleError?: IHandleError,
 ): Promise<T | null> {
   try {
+    console.log('\n\nbefore creating');
     const response = await axiosCall();
+    console.log('response: ', response);
     return processAxiosResponse(response);
   } catch (error) {
     return processAxiosError(

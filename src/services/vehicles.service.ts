@@ -1,13 +1,14 @@
-import {privateAxiosInstance} from '../config/axios.config';
+import {
+  baseURL,
+  privateAxiosInstance,
+  privateAxiosInstanceFormData,
+} from '../config/axios.config';
 import {
   IVehiclesSucessfullResponse,
   ISingleVehicleSucessfullResponse,
   IUpdateVehicle,
 } from '../interfaces/vehicle.interface';
 import {handleAxiosResponse} from '../utilities/handle-axios-response.utility';
-import Contacts from 'react-native-contacts';
-import {Contact} from 'react-native-contacts/type';
-import {showSnackbar} from '../utilities/snackbar.utility';
 
 export type IHandleError = (
   isErrorModalOpen: boolean,
@@ -38,38 +39,43 @@ export class VehiclesService {
   }
 
   static async create(
-    contactData: IUpdateVehicle,
+    vehicleData: IUpdateVehicle,
   ): Promise<ISingleVehicleSucessfullResponse | null> {
+    console.log('\n\n\nvehicleData.file', vehicleData.file);
+    const formData = new FormData();
+    formData.append('make', vehicleData.make || 'Chevrolet');
+    formData.append('model', vehicleData.model || 'Onix');
+    formData.append('year', vehicleData.year?.toString() || '2024');
+    formData.append('licensePlate', vehicleData.licensePlate || 'LLL234');
+    // formData.append('file', vehicleData.file);
+    console.log('formData: ', formData);
+    // const response =
+    //   await privateAxiosInstanceFormData.post<ISingleVehicleSucessfullResponse>(
+    //     `${this.resource}`,
+    //     formData,
+    //   );
+    // console.log('\n\nresponse before response: ', response);
+    const fullUrl = `${baseURL}/${this.resource}`;
+    console.log('\n\n\nRequest URL:', fullUrl);
+
     return handleAxiosResponse<ISingleVehicleSucessfullResponse>(
       async () =>
-        await privateAxiosInstance.post<ISingleVehicleSucessfullResponse>(
+        await privateAxiosInstanceFormData.post<ISingleVehicleSucessfullResponse>(
           `${this.resource}`,
-          contactData,
-        ),
-    );
-  }
-
-  static async createMultiple(
-    contactData: IUpdateVehicle[],
-  ): Promise<IVehiclesSucessfullResponse | null> {
-    return handleAxiosResponse<IVehiclesSucessfullResponse>(
-      async () =>
-        await privateAxiosInstance.post<IVehiclesSucessfullResponse>(
-          `${this.resource}/batch`,
-          contactData,
+          formData,
         ),
     );
   }
 
   static async update(
     id: number,
-    contactData: IUpdateVehicle,
+    vehicleData: IUpdateVehicle,
   ): Promise<IVehiclesSucessfullResponse | null> {
     return handleAxiosResponse<IVehiclesSucessfullResponse>(
       async () =>
         await privateAxiosInstance.patch<IVehiclesSucessfullResponse>(
           `${this.resource}/${id}`,
-          contactData,
+          vehicleData,
         ),
     );
   }
@@ -81,19 +87,5 @@ export class VehiclesService {
           `${this.resource}/${id}`,
         ),
     );
-  }
-
-  static async sync(): Promise<Contact[] | null> {
-    //Checking permissions first
-
-    try {
-      return await Contacts.getAll();
-    } catch (error) {
-      let errorMessage =
-        'There was a problem getting the contacts from the cellphone';
-      errorMessage += error instanceof Error ? error.message : '';
-      showSnackbar(errorMessage);
-      return Promise.resolve(null);
-    }
   }
 }
