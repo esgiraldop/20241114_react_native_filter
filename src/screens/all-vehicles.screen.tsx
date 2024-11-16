@@ -7,7 +7,7 @@ import {useFocusEffect} from '@react-navigation/native';
 import {theme} from '../theme/main.theme';
 import {VehiclesService} from '../services/vehicles.service';
 import {GoToVehicleDetailsButton} from '../components/allVehicles';
-import {Button} from 'react-native-elements';
+// import {Button} from 'react-native-elements';
 
 export function AllVehiclesScreen(): React.JSX.Element {
   const [vehicles, setVehicles] = useState<IVehicle[]>([]);
@@ -16,8 +16,8 @@ export function AllVehiclesScreen(): React.JSX.Element {
 
   // State for filter criteria
   const [licensePlate, setLicensePlate] = useState<string>('');
-  const [page, setPage] = useState<string>('1');
-  const [size, setSize] = useState<string>('10');
+  const [page, setPage] = useState<string>('');
+  const [size, setSize] = useState<string>('');
   const [year, setYear] = useState<string>('');
   const [make, setMake] = useState<string>('');
   const [model, setModel] = useState<string>('');
