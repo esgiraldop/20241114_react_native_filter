@@ -3,6 +3,7 @@ import {
   privateAxiosInstance,
   privateAxiosInstanceFormData,
 } from '../config/axios.config';
+import {IMaintenanceRecordsSucessfullResponse} from '../interfaces/maintenanceRecord.interface';
 import {
   IVehiclesSucessfullResponse,
   ISingleVehicleSucessfullResponse,
@@ -88,6 +89,17 @@ export class VehiclesService {
       async () =>
         await privateAxiosInstance.delete<IVehiclesSucessfullResponse>(
           `${this.resource}/${id}`,
+        ),
+    );
+  }
+
+  static async getMaintenanceRecords(
+    vehicleId: number,
+  ): Promise<IMaintenanceRecordsSucessfullResponse | null> {
+    return handleAxiosResponse<IMaintenanceRecordsSucessfullResponse>(
+      async () =>
+        await privateAxiosInstance.get<IMaintenanceRecordsSucessfullResponse>(
+          `/api/v1/vehicles/${vehicleId}/maintenance`,
         ),
     );
   }

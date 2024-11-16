@@ -78,6 +78,16 @@ export function VehicleDetailsScreen(): React.JSX.Element {
             <Text style={vehicleDetailsStyles.buttonText}>Delete Vehicle</Text>
           </TouchableOpacity>
 
+          <TouchableOpacity
+            style={vehicleDetailsStyles.button}
+            onPress={() =>
+              navigation.navigate('VehicleMaintenance', {vehicleId})
+            }>
+            <Text style={vehicleDetailsStyles.buttonText}>
+              View Maintenance Records
+            </Text>
+          </TouchableOpacity>
+
           <ConfirmationModal
             confirmationModalVisible={confirmationModalVisible}
             setConfirmationModalVisible={setConfirmationModalVisible}
