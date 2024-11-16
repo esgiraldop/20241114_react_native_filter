@@ -18,11 +18,14 @@ export type IHandleError = (
 export class VehiclesService {
   static resource = 'vehicles';
 
-  static async getAll(): Promise<IVehiclesSucessfullResponse | null> {
+  static async getAll(
+    params: Record<string, string>,
+  ): Promise<IVehiclesSucessfullResponse | null> {
     return handleAxiosResponse<IVehiclesSucessfullResponse>(
       async () =>
         await privateAxiosInstance.get<IVehiclesSucessfullResponse>(
           `${this.resource}`,
+          {params},
         ),
     );
   }
