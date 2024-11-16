@@ -19,6 +19,9 @@ import {formStyles} from '../styles/form.styles';
 import {textStyles} from '../styles/text.styles';
 import VehicleImage from '../components/common/VehicleImage.component';
 import {vehicleSchema} from '../schemas/vehicle.schema';
+import axios from 'axios';
+import {baseURL} from '../config/axios.config';
+import {getAsyncStorageValue} from '../utilities/get-async-storage-contents.utility';
 
 interface InewVehicleValues extends Omit<IVehicle, 'id'> {}
 
@@ -50,10 +53,53 @@ export function EditVehicleScreen(): React.JSX.Element {
   }, [vehicleInfo]);
 
   const onSubmit = async (values: IUpdateVehicle) => {
-    await VehiclesService.update(+vehicleId, {
-      ...values,
-      photo: imageUri, //TODO: I have to load the picture as a file in a form data
-    });
+    const formData = new FormData();
+
+    // Append fields
+    console.log('imageUri: ', imageUri);
+    formData.append('make', values.make);
+    formData.append('model', values.model);
+    formData.append('year', values.year.toString()); // Ensure year is a string
+    formData.append('licensePlate', values.licensePlate);
+
+    if (imageUri) {
+      formData.append('file', {
+        uri: imageUri, // File URI
+        type: 'image/avif', // MIME type
+        name: 'vehicle_photo.avif', // File name
+      });
+    }
+
+    try {
+      // Retrieve token
+      const token = await getAsyncStorageValue('token');
+
+      // Send the update request
+      const response = await axios.patch(
+        `${baseURL}/vehicles/${vehicleId}`,
+        formData,
+        {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+            Authorization: `Bearer ${token}`,
+          },
+        },
+      );
+
+      console.log('Update Response:', response.data);
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        console.error('Error Response:', error.response?.data); // Log backend error
+      } else {
+        console.error('Unexpected Error:', error);
+      }
+    }
+
+    // // TODO: To make this work
+    // await VehiclesService.update(+vehicleId, {
+    //   ...values,
+    //   photo: imageUri, //TODO: I have to load the picture as a file in a form data
+    // });
     navigation.goBack();
   };
 

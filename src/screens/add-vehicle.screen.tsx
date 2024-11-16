@@ -21,7 +21,7 @@ import VehicleImage from '../components/common/VehicleImage.component';
 import axios from 'axios';
 import {baseURL} from '../config/axios.config';
 import {getAsyncStorageValue} from '../utilities/get-async-storage-contents.utility';
-import {VehiclesService} from '../services/vehicles.service';
+// import {VehiclesService} from '../services/vehicles.service';
 
 type AddVehicleScreenProp = NativeStackNavigationProp<
   RootStackParamList,
